@@ -103,7 +103,7 @@ export const defaultContent: SiteContent = {
     line1: "I DESIGN & BUILD",
     line2: "WEBSITES & APPS",
     subtitle:
-      "From idea to launch — strategy, UX/UI design, and development handled end to end by one person. You explain the goal; I ship the product.",
+      "From idea to launch — strategy, UX/UI design, and development handled end to end. You explain the goal - I ship the product.",
     cards: [
       {
         label: "Auk IoT App",
@@ -415,23 +415,21 @@ export const defaultContent: SiteContent = {
   contact: {
     intro:
       "Tell me about your project — what you're building, who it's for, and where you're stuck. I reply within 24 hours with honest next steps, whether or not we end up working together.",
-    // TODO: replace the placeholder hrefs below with your real profile URLs.
     socials: [
-      { label: "Upwork", href: "https://www.upwork.com/freelancers/~YOUR_ID" },
-      { label: "Fiverr", href: "https://www.fiverr.com/YOUR_USERNAME" },
+      { label: "Fiverr", href: "https://www.fiverr.com/a1exzenchik" },
       { label: "Telegram", href: "https://t.me/lesha_zenchik" },
       { label: "LinkedIn", href: "https://linkedin.com/in/alexey-zenchik/" },
+      { label: "Email", href: "mailto:alexey129800@gmail.com" },
     ],
     email: "alexey129800@gmail.com",
   },
   footer: {
     name: "Alex Zenchik · Design & Development, Idea → Launch",
-    // TODO: replace the placeholder hrefs below with your real profile URLs.
     socials: [
-      { label: "Upwork", href: "https://www.upwork.com/freelancers/~YOUR_ID" },
-      { label: "Fiverr", href: "https://www.fiverr.com/YOUR_USERNAME" },
+      { label: "Fiverr", href: "https://www.fiverr.com/a1exzenchik" },
       { label: "Telegram", href: "https://t.me/lesha_zenchik" },
       { label: "LinkedIn", href: "https://linkedin.com/in/alexey-zenchik/" },
+      { label: "Email", href: "mailto:alexey129800@gmail.com" },
       { label: "GitHub", href: "https://github.com/A1exZen" },
     ],
   },
