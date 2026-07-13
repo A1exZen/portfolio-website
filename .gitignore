@@ -1,0 +1,10 @@
+# Secrets — never commit real env values (Telegram bot token, etc.)
+.env
+.env.local
+.env.*.local
+
+# Vercel project link/cache
+.vercel
+
+# Editor / OS
+.DS_Store

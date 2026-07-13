@@ -97,7 +97,7 @@ export type SiteContent = {
 export const defaultContent: SiteContent = {
   meta: {
     name: "Alex Zenchik",
-    title: "Alex Zenchik — Websites & Apps, Designed and Built from Idea to Launch",
+    title: "Websites & Apps, Designed and Built from Idea to Launch",
   },
   hero: {
     line1: "I DESIGN & BUILD",
