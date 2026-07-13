@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-pixel: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #111113;
+  --color-muted: #6b7280;
+  --color-cloud: #ececed;
+  --color-paper: #f4f4f5;
+  --color-accent: #2b7fff;
+  --color-accent-strong: #1a6dff;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-cloud);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+.font-pixel {
+  font-family: var(--font-pixel);
+  letter-spacing: -0.01em;
+}
+
+/* Hand-drawn wavy underline placed under pixel section headings */
+.wavy {
+  position: relative;
+}
+.wavy::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.55em;
+  transform: translateX(-50%);
+  width: 108%;
+  height: 0.5em;
+  background-repeat: repeat-x;
+  background-size: 16px 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='8' viewBox='0 0 16 8'%3E%3Cpath d='M0 4 Q4 0 8 4 T16 4' stroke='%23111113' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* Image placeholder: soft gray card with a slow diagonal sheen */
+.placeholder-fill {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e9eaec 0%, #f2f3f4 50%, #e6e7e9 100%);
+}
+.placeholder-fill::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 60%
+  );
+  transform: translateX(-30%);
+  animation: sheen 3.8s ease-in-out infinite;
+}
+@keyframes sheen {
+  0%,
+  100% {
+    transform: translateX(-40%);
+    opacity: 0;
+  }
+  45%,
+  55% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(40%);
+  }
+}
+
+/* Infinite skill-chip marquees */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.3333%);
+  }
+}
+@keyframes marquee-right {
+  from {
+    transform: translateX(-33.3333%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .placeholder-fill::after {
+    display: none;
+  }
+}

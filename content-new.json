@@ -1,0 +1,152 @@
+{
+	"meta": {
+		"name": "Alex Zenchik",
+		"title": "Product Designer & Developer"
+	},
+	"hero": {
+		"line1": "PRODUCT DESIGNER",
+		"line2": "& DEVELOPER",
+		"subtitle": "I design interfaces in Figma, then build them in React. One person, one vision, no handoff gaps.",
+		"cards": [
+			{ "label": "Auk IoT App" },
+			{ "label": "Device Pairing" },
+			{ "label": "Light Scheduling" },
+			{ "label": "SaaS Dashboard" },
+			{ "label": "Design System" },
+			{ "label": "E-commerce Checkout" },
+			{ "label": "Design → Code" }
+		]
+	},
+	"showcase": {
+		"focal": { "label": "Auk — Smart Plant Care IoT App" },
+		"cards": [
+			{ "label": "Onboarding Flow" },
+			{ "label": "Device Pairing" },
+			{ "label": "Light Scheduling Timeline" },
+			{ "label": "Real-Time Dashboard" },
+			{ "label": "SaaS Dashboard" },
+			{ "label": "Component Library" },
+			{ "label": "E-commerce Checkout" },
+			{ "label": "Design Handoff" }
+		]
+	},
+	"background": {
+		"intro": [
+			"I design interfaces from user empathy, then ship them myself in React. Started as a fullstack engineer building products, realized most handoff friction comes from broken communication between design and code. So I learned design properly — research, Figma, design systems, the full cycle. Now I'm fluent in both worlds.",
+			"For the past year I've been taking products from discovery conversations straight to production: defining user flows in Figma, building design systems that engineering actually wants to use, and implementing the interfaces myself to maintain that coherence. That overlap between design intent and code reality is where great products live."
+		],
+		"disciplines": [
+			{
+				"icon": "figma",
+				"title": "Product &\nUI/UX Design",
+				"body": "Discovery and user research → wireframes → high-fidelity prototypes in Figma. User flows, information architecture, design systems, component libraries, usability testing, design-to-dev handoff that actually works."
+			},
+			{
+				"icon": "react",
+				"title": "Fullstack\nDevelopment",
+				"body": "React and Next.js frontends, Node.js and NestJS backends, PostgreSQL and Firebase. Full-cycle shipping: from design specs to APIs to deployed product. 5+ shipped dashboards, e-commerce platforms, and real-time IoT systems."
+			},
+			{
+				"icon": "notion",
+				"title": "End-to-End\nOwnership",
+				"body": "I own the whole thing. Discovery calls with clients, translating requirements into architecture, designing in Figma, building in code, deploying to production. No handoff gaps. No 'that's impossible' conversations."
+			}
+		],
+		"stats": [
+			{ "value": "1 yr", "label": "Product Design" },
+			{ "value": "3+ yrs", "label": "Fullstack Engineering" }
+		]
+	},
+	"skills": {
+		"groups": [
+			{
+				"index": "01",
+				"label": "Product Design",
+				"tags": [
+					"Figma (Pro)",
+					"UX Research",
+					"User Flows & IA",
+					"Wireframing",
+					"High-Fidelity Prototyping",
+					"Design Systems",
+					"Component Libraries",
+					"Auto Layout & Variables",
+					"Usability Testing",
+					"Mobile Design",
+					"Framer",
+					"Design Handoff"
+				]
+			},
+			{
+				"index": "02",
+				"label": "Fullstack Development",
+				"tags": [
+					"React & Next.js",
+					"React Native (Expo)",
+					"TypeScript",
+					"Node.js & NestJS",
+					"PostgreSQL & MongoDB",
+					"REST APIs & OAuth",
+					"Firebase & Stripe",
+					"Tailwind CSS",
+					"Zustand & Redux",
+					"TanStack Query",
+					"Docker"
+				]
+			},
+			{
+				"index": "03",
+				"label": "Specializations",
+				"tags": [
+					"IoT & BLE Communication",
+					"Real-Time Data Sync",
+					"Mobile App Architecture",
+					"E-commerce Platforms",
+					"Dashboard Design",
+					"Design Systems",
+					"Design-to-Dev Handoff",
+					"End-to-End Product Ownership"
+				]
+			},
+			{
+				"index": "04",
+				"label": "Languages & Tools",
+				"tags": [
+					"Russian (Native)",
+					"English (B1)",
+					"Git & GitHub",
+					"VS Code",
+					"Postman",
+					"Claude AI",
+					"Notion"
+				]
+			}
+		]
+	},
+	"resume": {
+		"description": "Traditional resume format for recruiters and hiring teams. Two versions available: design-focused or engineering-focused.",
+		"pdfUrl": "/resume.pdf"
+	},
+	"contact": {
+		"intro": "Have a project that needs design and development? Looking to understand how design-to-dev handoff actually works? Let's talk. I'm open to full-time roles, contracts, or product collaboration.",
+		"socials": [
+			{
+				"label": "LinkedIn",
+				"href": "https://linkedin.com/in/alexey-zenchik/"
+			},
+			{ "label": "GitHub", "href": "https://github.com/A1exZen" },
+			{ "label": "Email", "href": "mailto:alexey129800@gmail.com" }
+		],
+		"email": "alexey129800@gmail.com"
+	},
+	"footer": {
+		"name": "Alex Zenchik · Product Designer & Developer",
+		"socials": [
+			{
+				"label": "LinkedIn",
+				"href": "https://linkedin.com/in/alexey-zenchik/"
+			},
+			{ "label": "GitHub", "href": "https://github.com/A1exZen" }
+		]
+	}
+}
