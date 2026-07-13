@@ -296,7 +296,7 @@ export const defaultContent: SiteContent = {
     // NOTE: drafts written from real project facts. Send each to the client
     // for approval (or replace with their own wording), and fill in `name`
     // before deploying.
-    intro: "What clients say about working with one person instead of a team.",
+    intro: "What clients say about working with me.",
     items: [
       {
         quote:
@@ -331,7 +331,7 @@ export const defaultContent: SiteContent = {
       a: "A landing page: 1–2 weeks. A business website or store: 3–5 weeks. An app MVP: 6–10 weeks. Your proposal includes a concrete timeline, and you see clickable progress builds throughout — not just a reveal at the end.",
     },
     {
-      q: "Why hire one person instead of an agency?",
+      q: "Why hire me instead of an agency?",
       a: "Speed and coherence. There's no project manager relaying messages and no designer-to-developer handoff where details die. You talk directly to the person doing the work, and the product that ships is the product you approved in design.",
     },
     {

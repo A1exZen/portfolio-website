@@ -79,7 +79,12 @@ export default async function handler(req: Request): Promise<Response> {
   );
 
   if (!tgRes.ok) {
-    return json({ error: "Failed to deliver message" }, 502);
+    // Telegram's own error text (e.g. "chat not found", "Unauthorized") is
+    // the fastest way to diagnose a bad token/chat id — surface it both in
+    // the Vercel function logs and in the response while this is being set up.
+    const detail = await tgRes.text();
+    console.error("Telegram sendMessage failed:", tgRes.status, detail);
+    return json({ error: "Failed to deliver message", detail }, 502);
   }
 
   return json({ ok: true }, 200);

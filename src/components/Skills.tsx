@@ -19,7 +19,7 @@ export default function Skills() {
         <Reveal className="mx-auto mt-10 max-w-xl text-center" direction="up">
           <p className="text-lg leading-relaxed text-ink/60">
             The full toolkit I design and build with — so you get a finished
-            product from one person, not a stack of handoffs.
+            product, not a stack of handoffs.
           </p>
         </Reveal>
 

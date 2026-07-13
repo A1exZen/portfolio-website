@@ -91,7 +91,7 @@ export const defaultProjects: Project[] = [
         heading: "Live on iOS and Android — and iterating with real users",
         body: [
           "The app shipped to production on both platforms. After launch, real usage surfaced edge cases no mockup predicts — spotty connectivity, delayed sensor data, devices left mid-schedule — and we iterated until the flows felt dependable.",
-          "Auk got its digital half from one person, without coordinating a designer, an agency, and a development team.",
+          "Auk got its digital half without coordinating a designer, an agency, and a development team — just me.",
         ],
         metrics: [
           { value: "iOS · Android", label: "Shipped platforms" },
@@ -223,7 +223,7 @@ export const defaultProjects: Project[] = [
   {
     slug: "ecommerce-checkout",
     title:
-      "Rebuilding a mobile checkout from six steps to three — design and code by one person",
+      "Rebuilding a mobile checkout from six steps to three — designed and built solo",
     tag: "E-commerce",
     tagTone: "neutral",
     year: "2024",
