@@ -417,7 +417,7 @@ export const defaultContent: SiteContent = {
       "Tell me about your project — what you're building, who it's for, and where you're stuck. I reply within 24 hours with honest next steps, whether or not we end up working together.",
     socials: [
       { label: "Fiverr", href: "https://www.fiverr.com/a1exzenchik" },
-      { label: "Telegram", href: "https://t.me/lesha_zenchik" },
+      { label: "Telegram", href: "http://telegram.me/lesha_zenchik" },
       { label: "LinkedIn", href: "https://linkedin.com/in/alexey-zenchik/" },
       { label: "Email", href: "mailto:alexey129800@gmail.com" },
     ],
@@ -427,7 +427,7 @@ export const defaultContent: SiteContent = {
     name: "Alex Zenchik · Design & Development, Idea → Launch",
     socials: [
       { label: "Fiverr", href: "https://www.fiverr.com/a1exzenchik" },
-      { label: "Telegram", href: "https://t.me/lesha_zenchik" },
+      { label: "Telegram", href: "http://telegram.me/lesha_zenchik" },
       { label: "LinkedIn", href: "https://linkedin.com/in/alexey-zenchik/" },
       { label: "Email", href: "mailto:alexey129800@gmail.com" },
       { label: "GitHub", href: "https://github.com/A1exZen" },
