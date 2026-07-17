@@ -107,7 +107,7 @@ export const defaultContent: SiteContent = {
     cards: [
       {
         label: "Auk IoT App",
-        src: "/images/project-preview/Auk-Preview.png",
+        src: "/images/auk-shots/02-schedule.png",
       },
       {
         label: "Device Pairing",
@@ -163,7 +163,7 @@ export const defaultContent: SiteContent = {
       },
       {
         label: "Auk — Mobile App",
-        src: "/images/project-preview/Auk-Preview.png",
+        src: "/images/auk-shots/02-schedule.png",
       },
       {
         label: "Build — Web3 Platform",
@@ -434,5 +434,3 @@ export const defaultContent: SiteContent = {
     ],
   },
 };
-
-export const CONTENT_VERSION = 3;

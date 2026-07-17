@@ -8,15 +8,6 @@ import CaseStudy from "./pages/CaseStudy";
 import useSmoothScroll from "./hooks/useSmoothScroll";
 import { getLenis } from "./lib/lenis";
 import { useContent } from "./cms/ContentProvider";
-import AdminLayout from "./pages/admin/AdminLayout";
-import AdminHome from "./pages/admin/AdminHome";
-import HeroEditor from "./pages/admin/editors/HeroEditor";
-import ShowcaseEditor from "./pages/admin/editors/ShowcaseEditor";
-import BackgroundEditor from "./pages/admin/editors/BackgroundEditor";
-import SkillsEditor from "./pages/admin/editors/SkillsEditor";
-import ResumeEditor from "./pages/admin/editors/ResumeEditor";
-import ProjectsEditor from "./pages/admin/editors/ProjectsEditor";
-import ContactEditor from "./pages/admin/editors/ContactEditor";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -59,7 +50,7 @@ function ScrollToTop() {
   return null;
 }
 
-/** Keep the browser tab title in sync with editable content. */
+/** Keep the browser tab title in sync with the site's content. */
 function useDocTitle() {
   const { meta } = useContent();
   useEffect(() => {
@@ -67,9 +58,9 @@ function useDocTitle() {
   }, [meta.name, meta.title]);
 }
 
-/** The public marketing site, with all its chrome and smooth scroll. */
-function SiteRoutes() {
+export default function App() {
   useSmoothScroll();
+  useDocTitle();
   return (
     <>
       <ScrollToTop />
@@ -84,32 +75,4 @@ function SiteRoutes() {
       </main>
     </>
   );
-}
-
-/** The CMS admin, a plain app shell without site chrome or smooth scroll. */
-function AdminRoutes() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return (
-    <Routes>
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<AdminHome />} />
-        <Route path="hero" element={<HeroEditor />} />
-        <Route path="showcase" element={<ShowcaseEditor />} />
-        <Route path="background" element={<BackgroundEditor />} />
-        <Route path="skills" element={<SkillsEditor />} />
-        <Route path="resume" element={<ResumeEditor />} />
-        <Route path="projects" element={<ProjectsEditor />} />
-        <Route path="contact" element={<ContactEditor />} />
-      </Route>
-    </Routes>
-  );
-}
-
-export default function App() {
-  const { pathname } = useLocation();
-  useDocTitle();
-  return pathname.startsWith("/admin") ? <AdminRoutes /> : <SiteRoutes />;
 }

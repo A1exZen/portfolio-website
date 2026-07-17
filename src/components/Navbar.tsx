@@ -10,7 +10,8 @@ import { Link, useLocation } from "react-router-dom";
 const homeLinks = [
 	{ label: "Services", href: "/#services" },
 	{ label: "Work", href: "/#work" },
-	{ label: "Pricing", href: "/#pricing" },
+	// Pricing temporarily disabled — uncomment when the Packages section returns.
+	// { label: "Pricing", href: "/#pricing" },
 	{ label: "About", href: "/#background" },
 	{ label: "FAQ", href: "/#faq" },
 ];

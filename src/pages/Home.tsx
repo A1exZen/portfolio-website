@@ -4,7 +4,8 @@ import Faq from "../components/Faq";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import Journey from "../components/Journey";
-import Packages from "../components/Packages";
+// Pricing temporarily disabled — see the commented-out <Packages /> below.
+// import Packages from "../components/Packages";
 import Services from "../components/Services";
 import Showcase from "../components/Showcase";
 import Skills from "../components/Skills";
@@ -40,7 +41,8 @@ export default function Home() {
 					<Services />
 					<CaseStudies />
 					<Journey />
-					<Packages />
+					{/* Pricing temporarily disabled — re-enable by uncommenting. */}
+					{/* <Packages /> */}
 					<Testimonials />
 					<Background />
 					<Skills />

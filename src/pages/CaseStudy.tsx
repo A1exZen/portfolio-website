@@ -36,10 +36,14 @@ export default function CaseStudy() {
 	const idx = liveProjects.findIndex(p => p.slug === project.slug);
 	const next = liveProjects[(idx + 1) % liveProjects.length];
 
-	// Every section image, gathered for the horizontal gallery near the end.
-	const gallery: ImageSlot[] = project.sections
-		.filter(s => s.image || s.imageSrc)
-		.map(s => ({ label: s.image ?? "", src: s.imageSrc }));
+	// A dedicated gallery, when the project defines one, so a case with a lot
+	// of supporting material isn't limited to just its three hero images.
+	// Otherwise fall back to gathering each section's own image.
+	const gallery: ImageSlot[] =
+		project.gallery ??
+		project.sections
+			.filter(s => s.image || s.imageSrc)
+			.map(s => ({ label: s.image ?? "", src: s.imageSrc }));
 
 	return (
 		<article className="bg-white">

@@ -37,69 +37,82 @@ export type Project = {
   area: string;
   role: string;
   sections: CaseSection[];
+  /** Extra screens for the case study's "closer look" horizontal gallery —
+   * independent of each section's single hero image, so a project with a lot
+   * of supporting material isn't limited to just its three hero shots. Falls
+   * back to the section images when omitted. */
+  gallery?: { label: string; src?: string; position?: string }[];
 };
 
 export const defaultProjects: Project[] = [
   {
     slug: "auk-iot-plant-app",
     title:
-      "A companion app for a smart gardening device — designed, built, and shipped to both app stores",
+      "Giving a smart garden device its entire software experience — from first pairing to a daily habit",
     tag: "Auk",
     tagTone: "dark",
     year: "2025–2026",
     live: true,
     cardDesc:
-      "Auk sells a smart indoor garden — but had no app to control it. I designed the mobile UX, built the React Native app with Bluetooth pairing, and shipped it to iOS and Android.",
+      "Auk sells a smart indoor garden — but had no app to control it. I designed the mobile UX and built the React Native app end to end, from Bluetooth pairing to multi-device management.",
     imgLabel: "Auk",
     imgSrc: "/images/project-preview/Auk-Preview.png",
     intro:
-      "Auk (auk.com) makes smart indoor gardens. Their newest device, the Auk Mini 2, launched without a companion app — customers couldn't control lighting or schedules from their phone. I took the app from zero to production: mobile UX in Figma, a React Native build with Bluetooth device pairing, and release on both app stores.",
-    focus: "Mobile UX · IoT · React Native",
+      "Auk (auk.com) sells the Auk Mini 2, a smart indoor garden — but the device had no software experience at all before this project. Working with Auk's product lead over about three months, I designed and built the entire companion app from scratch: onboarding, Bluetooth pairing, light scheduling, and multi-device management. The device's own firmware was engineered by Auk's hardware team; my scope was everything a customer actually touches, from the first pairing screen to the daily habit of checking on their plants.",
+    focus: "Mobile UX · React Native · BLE Integration",
     area: "Consumer Hardware / IoT",
     role: "Product Designer & Developer",
     sections: [
       {
         id: "problem",
         eyebrow: "The problem",
-        heading: "A physical product without its digital half",
+        heading: "A beautiful device with nothing to talk to it",
         body: [
-          "A smart device is only as good as the app that controls it — and this one didn't have one. Customers needed to pair the device, control its grow light, and set schedules, and all of it had to work over Bluetooth on a device you can't always see responding.",
-          "The hard part wasn't screens — it was trust. Pairing had to succeed on the first try, and the interface had to reflect the device's real, live state rather than an optimistic guess.",
+          "The Auk Mini 2 was a finished physical product with zero software behind it — no way to pair, no way to see the light schedule, no way to know if a device left unattended for a week was actually still running. Households with more than one Auk had no shared way to manage them either.",
+          "The real difficulty wasn't drawing screens — it was trust. Bluetooth pairing had to succeed on the first try with no support call as a fallback, and every screen had to reflect the device's true live state rather than an optimistic guess, because a plant that goes unwatered for a week doesn't forgive a UI bug.",
         ],
-        image: "Auk Mini 2 — device & app",
+        image: "07 — Not Available (connection error)",
+        imageSrc: "/images/auk-shots/01-pair.png",
       },
       {
         id: "solution",
         eyebrow: "The solution",
-        heading: "One guided path from unboxing to a running schedule",
+        heading: "A guided path from first pairing to a habit that runs itself",
         body: [
-          "I designed onboarding around a single question at a time: pair the device, confirm it's alive, set one schedule, done. Everything else became optional, progressive steps.",
-          "The light schedule is a custom timeline view instead of a generic time picker — a full day reads at a glance. The dashboard is built from modular cards, each reflecting one piece of live device state, so late or missing sensor data degrades gracefully instead of breaking the screen.",
-          "Because I built what I designed, every design decision was validated against real firmware behaviour — not mockup data.",
+          "I owned the entire software experience — onboarding, Bluetooth pairing, the light-scheduling interface, multi-device management, and the React Native app itself — while Auk's own hardware engineer handled the firmware I connected to over BLE. That split let me focus entirely on how the product feels to actually use.",
+          "Pairing is a single guided flow: discover the device, confirm the connection, done — no manual setup and no settings menu required before the first light ever turns on. The light schedule is a custom timeline rather than a generic time picker, so a full day of care reads at a glance.",
+          "I designed the Growth Mode system — three presets (Herbs & Salads, Fruits & Veggies, Slow) that translate day-to-day plant care into a single tap, with the reasoning always visible if someone wants to understand what changed. For households running more than one Auk, I built a 'Your gardens' view so every device is a named, individually manageable card instead of a single hard-coded connection.",
         ],
         bullets: [
-          "Bluetooth pairing reduced to one guided screen",
+          "Bluetooth pairing reduced to one guided flow",
           "Custom light-scheduling timeline",
-          "Live dashboard that tolerates delayed sensor data",
-          "Design and code kept in lockstep by one owner",
+          "Growth Mode: three presets that translate plant care into one tap",
+          "Multi-device 'Your gardens' dashboard for households with more than one Auk",
+          "Live state cards that degrade gracefully on delayed sensor data",
         ],
-        image: "Light-scheduling timeline",
+        image: "06 — Dashboard, light on",
+        imageSrc: "/images/auk-shots/02-schedule.png",
       },
       {
         id: "outcome",
         eyebrow: "The outcome",
-        heading: "Live on iOS and Android — and iterating with real users",
+        heading: "A daily habit, not a pairing demo",
         body: [
-          "The app shipped to production on both platforms. After launch, real usage surfaced edge cases no mockup predicts — spotty connectivity, delayed sensor data, devices left mid-schedule — and we iterated until the flows felt dependable.",
-          "Auk got its digital half without coordinating a designer, an agency, and a development team — just me.",
+          "The app is in daily use by Auk customers, live on iOS and Android. Real households surfaced edge cases no design review could — spotty apartment Wi-Fi, a device left mid-schedule, someone renaming their garden mid-onboarding — and working directly with Auk's product lead, I iterated until pairing and scheduling felt dependable rather than flaky.",
+          "Because one person owned every screen end to end, there was no handoff between what was designed and what shipped on the software side — the app a customer opens today is the one I both designed and built.",
         ],
         metrics: [
-          { value: "iOS · Android", label: "Shipped platforms" },
+          { value: "~3 months", label: "First call → shipped" },
           { value: "React Native", label: "Stack" },
-          { value: "BLE pairing", label: "Core tech" },
-          { value: "1 person", label: "Design + build" },
+          { value: "BLE pairing", label: "Core integration" },
+          { value: "Software: 1 person", label: "Hardware: Auk's own team" },
         ],
       },
+    ],
+    gallery: [
+      { label: "21 — website", src: "/images/auk-shots/website.png" },
+      { label: "22 — Scanning for device", src: "/images/auk-shots/04-garden.png" },
+      { label: "20 — Discover nearby devices", src: "/images/auk-shots/03-settings.png" },
     ],
   },
   {
@@ -118,6 +131,7 @@ export const defaultProjects: Project[] = [
     focus: "B2B UX · Web App · Process Design",
     area: "Legal Services",
     role: "Product Designer & Developer",
+    imgSrc: "/images/project-preview/limon.png",
     sections: [
       {
         id: "problem",
@@ -169,7 +183,7 @@ export const defaultProjects: Project[] = [
     tag: "SaaS",
     tagTone: "neutral",
     year: "2025",
-    live: true,
+    live: false,
     cardDesc:
       "A SaaS team's customers were tracking operations in exported spreadsheets. I designed the information architecture, built a 40+ component library, and shipped the dashboard on React.",
     imgLabel: "SaaS Dashboard",
@@ -227,7 +241,7 @@ export const defaultProjects: Project[] = [
     tag: "E-commerce",
     tagTone: "neutral",
     year: "2024",
-    live: true,
+    live: false,
     cardDesc:
       "Strong mobile traffic, weak conversion. I redesigned a dense 6-step checkout into 3 focused steps with guest checkout by default, and shipped it on Next.js + Stripe.",
     imgLabel: "Storefront",
