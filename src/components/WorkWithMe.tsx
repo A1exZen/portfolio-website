@@ -112,7 +112,7 @@ export default function WorkWithMe() {
 								transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
 								className="rounded-3xl bg-cloud px-8 py-14 text-center"
 							>
-								<span className="grid h-14 w-14 place-items-center rounded-full bg-accent text-white">
+								<span className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-accent text-white">
 									<CheckIcon />
 								</span>
 								<h3 className="mt-5 text-xl font-black tracking-tight text-ink">
