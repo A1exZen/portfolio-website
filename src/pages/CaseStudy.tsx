@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useContent } from "../cms/ContentProvider";
 import Footer from "../components/Footer";
+import HeroBackdrop from "../components/HeroBackdrop";
 import Placeholder from "../components/Placeholder";
 import Reveal from "../components/Reveal";
 import MetricGrid from "../components/ui/MetricGrid";
@@ -27,7 +28,6 @@ export default function CaseStudy() {
 	const introY = useTransform(scrollYProgress, [0, 1], [0, -55]);
 	const metaY = useTransform(scrollYProgress, [0, 1], [0, -24]);
 	const coverOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
-	const wordY = useTransform(scrollYProgress, [0, 1], [0, -160]);
 
 	// Only live projects have detail pages.
 	if (!project || !project.live) return <Navigate to="/" replace />;
@@ -47,32 +47,27 @@ export default function CaseStudy() {
 
 	return (
 		<article className="bg-white">
-			{/* Cover — light panel that dissolves into white via a zigzag */}
+			{/* Cover: the home hero's studio sky, sized so the zigzag lands at
+			    the same height as on the home page (viewport minus HERO_SEAM, plus
+			    the zigzag's own height since it sits inside the cover). */}
 			<div
 				ref={coverRef}
-				className="relative overflow-hidden bg-cloud pb-16 pt-36 sm:pt-44"
+				className="relative flex min-h-[calc(100vh-7rem+42px)] flex-col justify-center overflow-hidden pb-24 pt-32 sm:min-h-[calc(100vh-7rem+60px)] sm:pt-36"
 			>
-				{/* Oversized ghost word drifting behind the title */}
-				<motion.span
-					aria-hidden
-					style={{ y: wordY, opacity: coverOpacity }}
-					className="pointer-events-none absolute -right-6 top-20 select-none font-pixel text-[26vw] font-bold leading-none text-black/[0.035] sm:text-[20vw]"
-				>
-					{project.tag}
-				</motion.span>
+				<HeroBackdrop />
 
 				<motion.div
 					style={{ opacity: coverOpacity }}
-					className="relative mx-auto max-w-4xl px-6"
+					className="pointer-events-none relative mx-auto w-full max-w-4xl px-6"
 				>
 					<motion.div style={{ y: titleY }}>
 						<Reveal direction="up">
-							<span className="inline-block rounded-full bg-black/5 px-3 py-1 text-sm font-bold text-ink">
+							<span className="inline-block rounded-full bg-white/10 px-3 py-1 text-sm font-bold text-white ring-1 ring-white/25 backdrop-blur">
 								{project.tag}
 							</span>
 						</Reveal>
 						<Reveal direction="up" delay={0.05}>
-							<h1 className="mt-5 max-w-3xl text-2xl font-black leading-[1.05] tracking-tight text-ink sm:text-4xl">
+							<h1 className="mt-5 max-w-3xl text-2xl font-black leading-[1.05] tracking-tight text-white sm:text-4xl">
 								{project.title}
 							</h1>
 						</Reveal>
@@ -80,7 +75,7 @@ export default function CaseStudy() {
 
 					<motion.div style={{ y: introY }}>
 						<Reveal direction="up" delay={0.1}>
-							<p className="mt-6 max-w-3xl text-lg leading-relaxed text-ink/70 sm:text-xl">
+							<p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/75 sm:text-xl">
 								{project.intro}
 							</p>
 						</Reveal>
@@ -97,7 +92,7 @@ export default function CaseStudy() {
 
 						<a
 							href="#problem"
-							className="mt-12 inline-flex items-center gap-2 text-lg font-bold text-ink/70 transition-colors hover:text-ink"
+							className="pointer-events-auto mt-12 inline-flex items-center gap-2 text-lg font-bold text-white/75 transition-colors hover:text-white"
 						>
 							Read more
 							<motion.span
@@ -234,7 +229,7 @@ export default function CaseStudy() {
 				</div>
 			</div>
 
-			<Footer />
+			<Footer above="bg-cloud" />
 		</article>
 	);
 }
@@ -339,10 +334,10 @@ function HorizontalGallery({ images }: { images: ImageSlot[] }) {
 function MetaItem({ label, value }: { label: string; value: string }) {
 	return (
 		<div>
-			<dt className="text-sm font-bold uppercase tracking-[0.15em] text-ink/40">
+			<dt className="text-sm font-bold uppercase tracking-[0.15em] text-white/50">
 				{label}
 			</dt>
-			<dd className="mt-2 text-lg font-bold text-ink">{value}</dd>
+			<dd className="mt-2 text-lg font-bold text-white">{value}</dd>
 		</div>
 	);
 }

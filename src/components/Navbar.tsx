@@ -1,16 +1,11 @@
-import {
-	AnimatePresence,
-	motion,
-	useMotionValueEvent,
-	useScroll,
-} from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const homeLinks = [
 	{ label: "Services", href: "/#services" },
 	{ label: "Work", href: "/#work" },
-	// Pricing temporarily disabled — uncomment when the Packages section returns.
+	// Pricing temporarily disabled: uncomment when the Packages section returns.
 	// { label: "Pricing", href: "/#pricing" },
 	{ label: "About", href: "/#background" },
 	{ label: "FAQ", href: "/#faq" },
@@ -29,11 +24,40 @@ const spring = { type: "spring" as const, stiffness: 220, damping: 28 };
 // module-scoped flag survives remounts within a session.
 let hasIntroPlayed = false;
 
+/**
+ * Which linked section is currently under the reading line (a band around
+ * 40% from the top of the viewport). Drives the nav's active state.
+ */
+function useActiveSection(ids: string[]) {
+	const [active, setActive] = useState<string | null>(null);
+	const key = ids.join("|");
+	useEffect(() => {
+		const els = key
+			.split("|")
+			.map(id => document.getElementById(id))
+			.filter((el): el is HTMLElement => !!el);
+		if (!els.length) {
+			setActive(null);
+			return;
+		}
+		const io = new IntersectionObserver(
+			entries => {
+				for (const e of entries) {
+					if (e.isIntersecting) setActive(e.target.id);
+					else setActive(a => (a === e.target.id ? null : a));
+				}
+			},
+			{ rootMargin: "-40% 0px -55% 0px" },
+		);
+		els.forEach(el => io.observe(el));
+		return () => io.disconnect();
+	}, [key]);
+	return active;
+}
+
 export default function Navbar() {
-	const [scrolled, setScrolled] = useState(false);
 	const [mobileOpen, setMobileOpen] = useState(false);
 	const [playIntro] = useState(() => !hasIntroPlayed);
-	const { scrollY } = useScroll();
 	const { pathname } = useLocation();
 
 	useEffect(() => {
@@ -41,12 +65,8 @@ export default function Navbar() {
 	}, []);
 
 	const isCase = pathname.startsWith("/case-studies/");
-	// On a case study the full nav is always shown; on home it expands on scroll.
-	const expanded = isCase || scrolled;
-
-	useMotionValueEvent(scrollY, "change", v => setScrolled(v > 40));
-
 	const links = isCase ? caseLinks : homeLinks;
+	const activeId = useActiveSection(links.map(l => l.href.split("#")[1]));
 
 	// Close the mobile menu whenever the route changes.
 	useEffect(() => {
@@ -75,32 +95,30 @@ export default function Navbar() {
 						<Avatar />
 					</Link>
 
-					<AnimatePresence initial={false} mode="popLayout">
-						{expanded && (
-							<motion.div
-								key="links"
-								layout
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								exit={{ opacity: 0 }}
-								transition={{ opacity: { duration: 0.18 } }}
-								className="hidden items-center overflow-hidden md:flex"
-							>
-								{links.map(l => (
+					{/* Always visible from md up; below that the hamburger takes over. */}
+					<ul className="hidden items-center md:flex">
+						{links.map(l => {
+							const current = l.href.split("#")[1] === activeId;
+							return (
+								<li key={l.label}>
 									<motion.a
-										key={l.label}
 										href={l.href}
+										aria-current={current ? "location" : undefined}
 										whileHover={{ scale: 1.1 }}
 										whileTap={{ scale: 0.94 }}
 										transition={{ type: "spring", stiffness: 400, damping: 15 }}
-										className="inline-block whitespace-nowrap rounded-full px-4 py-2 text-[15px] font-semibold text-ink/70 underline decoration-wavy decoration-transparent decoration-1 underline-offset-[6px] transition-colors duration-200 hover:text-ink hover:decoration-ink"
+										className={`inline-block whitespace-nowrap rounded-full px-4 py-2 text-[15px] font-semibold underline decoration-wavy decoration-1 underline-offset-[6px] transition-colors duration-200 hover:text-ink hover:decoration-ink ${
+											current
+												? "text-ink decoration-ink"
+												: "text-ink/70 decoration-transparent"
+										}`}
 									>
 										{l.label}
 									</motion.a>
-								))}
-							</motion.div>
-						)}
-					</AnimatePresence>
+								</li>
+							);
+						})}
+					</ul>
 
 					<MenuToggle open={mobileOpen} onClick={() => setMobileOpen(v => !v)} />
 

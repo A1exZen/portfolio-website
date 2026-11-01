@@ -12,6 +12,7 @@ export const color = {
   paper: "#f4f4f5",
   accent: "#2b7fff",
   accentStrong: "#1a6dff",
+  accentDeep: "#1660e8",
 } as const;
 
 export const radius = {
