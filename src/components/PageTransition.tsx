@@ -1,25 +1,19 @@
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getLenis } from "../lib/lenis";
 
 type Phase = "idle" | "covering" | "revealing";
 
-const COLS = 5;
-const DURATION = 0.62;
-const STAGGER = 0.06;
-const HOLD_MS = 120;
-// Smooth, weighted expo curve — slow-in, slow-out.
-const EASE = [0.83, 0, 0.17, 1] as const;
-
-// Total time for one full sweep across every staggered column.
-const SWEEP_MS = (DURATION + STAGGER * (COLS - 1)) * 1000;
+const FADE_IN_MS = 320;
+const FADE_OUT_MS = 480;
+const HOLD_MS = 60;
+const EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
- * Route-change transition: a set of vertical panels sweep up in a staggered
- * cascade to cover the viewport, the route swaps + scroll resets underneath,
- * then the panels continue upward (staggered from the other side) to reveal the
- * new page. One continuous directional motion, layered for depth.
+ * Route-change transition: a soft veil in the page colour fades over the
+ * screen, the route swaps and scroll resets underneath, then the veil lifts
+ * while the new page drifts up a few pixels into place.
  *
  * Intercepts clicks on same-origin, same-tab links anywhere in the app so no
  * individual `<Link>` needs to be touched.
@@ -51,8 +45,6 @@ export default function PageTransition() {
 		return () => document.removeEventListener("click", onClick);
 	}, [location.pathname]);
 
-	// Phase machine driven by timers so the staggered columns stay in sync
-	// regardless of which one finishes last.
 	useEffect(() => {
 		if (phase === "covering") {
 			const t = window.setTimeout(() => {
@@ -64,64 +56,40 @@ export default function PageTransition() {
 				if (lenis) lenis.scrollTo(0, { immediate: true });
 				else window.scrollTo(0, 0);
 				window.setTimeout(() => setPhase("revealing"), HOLD_MS);
-			}, SWEEP_MS);
+			}, FADE_IN_MS);
 			return () => window.clearTimeout(t);
 		}
 		if (phase === "revealing") {
-			const t = window.setTimeout(() => setPhase("idle"), SWEEP_MS);
+			const t = window.setTimeout(() => setPhase("idle"), FADE_OUT_MS);
 			return () => window.clearTimeout(t);
 		}
 	}, [phase, navigate]);
 
-	const active = phase !== "idle";
+	// Nudge the incoming page up into place as the veil lifts.
+	useEffect(() => {
+		if (phase !== "revealing") return;
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+		const main = document.querySelector("main");
+		main?.animate(
+			[
+				{ transform: "translateY(18px)", opacity: 0.6 },
+				{ transform: "translateY(0)", opacity: 1 },
+			],
+			{ duration: FADE_OUT_MS, easing: "cubic-bezier(0.22,1,0.36,1)" },
+		);
+	}, [phase]);
 
 	return (
-		<div
+		<motion.div
 			aria-hidden
-			className="fixed inset-0 z-999 flex"
-			style={{ pointerEvents: active ? "auto" : "none" }}
-		>
-			{Array.from({ length: COLS }).map((_, i) => {
-				// Covering cascades left→right; revealing continues from the same
-				// leading edge so the motion reads as one continuous pass.
-				const delay =
-					phase === "revealing" ? (COLS - 1 - i) * STAGGER : i * STAGGER;
-				// Parked below the fold; up to cover; further up to reveal.
-				const y =
-					phase === "covering" ? "0%" : phase === "revealing" ? "-101%" : "101%";
-
-				return (
-					<motion.div
-						key={i}
-						initial={{ y: "101%" }}
-						animate={{ y }}
-						transition={{
-							duration: phase === "idle" ? 0 : DURATION,
-							ease: EASE,
-							delay: phase === "idle" ? 0 : delay,
-						}}
-						className="relative h-full flex-1 bg-ink"
-					>
-						{/* Leading accent edge on the top of each panel */}
-						<span className="absolute inset-x-0 top-0 h-1 bg-accent" />
-					</motion.div>
-				);
-			})}
-
-			{/* Centered monogram, fading in only while the screen is covered */}
-			<AnimatePresence>
-				{active && (
-					<motion.span
-						initial={{ opacity: 0, scale: 0.9, y: 10 }}
-						animate={{ opacity: 1, scale: 1, y: 0 }}
-						exit={{ opacity: 0, scale: 0.9, y: -10 }}
-						transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-						className="pointer-events-none absolute inset-0 grid place-items-center font-pixel text-4xl font-bold tracking-wide text-white/90 sm:text-5xl"
-					>
-						AZ
-					</motion.span>
-				)}
-			</AnimatePresence>
-		</div>
+			initial={false}
+			animate={{ opacity: phase === "covering" ? 1 : 0 }}
+			transition={{
+				duration: (phase === "covering" ? FADE_IN_MS : FADE_OUT_MS) / 1000,
+				ease: EASE,
+			}}
+			className="fixed inset-0 z-999 bg-cloud"
+			style={{ pointerEvents: phase === "idle" ? "none" : "auto" }}
+		/>
 	);
 }

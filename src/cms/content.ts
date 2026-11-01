@@ -1,98 +1,104 @@
-import type { ProcessStep } from "../components/ui/ProcessTimeline";
-import { designProcess } from "../data/process";
-import { defaultProjects, type Project } from "../data/projects";
+import type { ProcessStep } from "../components/ui/ProcessTimeline"
+import { designProcess } from "../data/process"
+import { defaultProjects, type Project } from "../data/projects"
 
 /** One image slot: a label for the placeholder + an optional real source.
  * `position` is a CSS object-position, for screenshots whose focal point
  * isn't centred (e.g. a phone mockup off to one side of a wide canvas).
  * `href`, when set, makes the slot a clickable link (e.g. a live project). */
 export type ImageSlot = {
-  label: string;
-  src?: string;
-  position?: string;
-  href?: string;
-};
+  label: string
+  src?: string
+  position?: string
+  href?: string
+}
 
-export type DisciplineIcon = "figma" | "react" | "notion";
+export type DisciplineIcon = "figma" | "react" | "notion"
 
 export type ServiceItem = {
-  icon: DisciplineIcon;
-  title: string;
-  body: string;
-  deliverables: string[];
-};
+  icon: DisciplineIcon
+  title: string
+  body: string
+  deliverables: string[]
+}
 
 export type PackageItem = {
-  name: string;
+  name: string
   /** e.g. "from $800" — keep the "from" inside so currency/format stays free. */
-  price: string;
-  timeline: string;
-  blurb: string;
-  features: string[];
-  highlighted?: boolean;
-};
+  price: string
+  timeline: string
+  blurb: string
+  features: string[]
+  highlighted?: boolean
+}
 
 export type Testimonial = {
-  quote: string;
+  quote: string
   /** Person's name — leave empty until the client approves the wording. */
-  name: string;
-  role: string;
-  project: string;
-};
+  name: string
+  role: string
+  project: string
+}
 
-export type FaqItem = { q: string; a: string };
+export type FaqItem = { q: string; a: string }
 
 export type SiteContent = {
-  meta: { name: string; title: string };
+  meta: { name: string; title: string }
   hero: {
-    line1: string;
-    line2: string;
-    subtitle: string;
-    cards: ImageSlot[];
-  };
+    line1: string
+    line2: string
+    subtitle: string
+    cards: ImageSlot[]
+  }
   showcase: {
-    focal: ImageSlot;
-    cards: ImageSlot[];
-  };
+    intro: string
+    focal: ImageSlot
+    cards: ImageSlot[]
+  }
+  /** Design philosophy: one big statement plus a couple of supporting cards. */
+  philosophy: {
+    statement: string
+    cards: { title: string; body: string }[]
+  }
   services: {
-    intro: string;
-    items: ServiceItem[];
-  };
+    intro: string
+    items: ServiceItem[]
+  }
   /** Client-facing engagement journey (not the internal design process). */
   journey: {
-    intro: string;
-    steps: { title: string; body: string }[];
-  };
+    intro: string
+    steps: { title: string; body: string }[]
+  }
   packages: {
-    intro: string;
-    items: PackageItem[];
-    note: string;
-  };
+    intro: string
+    items: PackageItem[]
+    note: string
+  }
   testimonials: {
-    intro: string;
-    items: Testimonial[];
-  };
-  faq: FaqItem[];
+    intro: string
+    items: Testimonial[]
+  }
+  faq: FaqItem[]
   background: {
-    intro: string[];
-    stats: { value: string; label: string }[];
-  };
+    intro: string[]
+    stats: { value: string; label: string }[]
+  }
   skills: {
-    process: ProcessStep[];
-    groups: { index: string; label: string; tags: string[] }[];
-  };
-  resume: { description: string; pdfUrl: string };
-  projects: Project[];
+    process: ProcessStep[]
+    groups: { index: string; label: string; tags: string[] }[]
+  }
+  resume: { description: string; pdfUrl: string }
+  projects: Project[]
   contact: {
-    intro: string;
-    socials: { label: string; href: string }[];
-    email: string;
-  };
+    intro: string
+    socials: { label: string; href: string }[]
+    email: string
+  }
   footer: {
-    name: string;
-    socials: { label: string; href: string }[];
-  };
-};
+    name: string
+    socials: { label: string; href: string }[]
+  }
+}
 
 export const defaultContent: SiteContent = {
   meta: {
@@ -138,6 +144,8 @@ export const defaultContent: SiteContent = {
     ],
   },
   showcase: {
+    intro:
+      "Sites and apps I've designed and built. Hover to slow it down, click to open a live one.",
     focal: {
       label: "Finora — Finance Dashboard",
       src: "/images/project-preview/macbook-finora.png",
@@ -177,6 +185,20 @@ export const defaultContent: SiteContent = {
       {
         label: "PeakLog — Health Dashboard",
         src: "/images/project-preview/PeakLog.png",
+      },
+    ],
+  },
+  philosophy: {
+    statement:
+      "If I'm not pleased with my own work, why would anyone else be?",
+    cards: [
+      {
+        title: "Designing for myself",
+        body: "All creative work starts with me. What I make has to clear my own bar first, long before it reaches a client or their users.",
+      },
+      {
+        title: "Feeling is everything",
+        body: "Design is there to drive positive emotions: satisfaction, pleasure and a bit of joy. Improving someone's life is always the goal.",
       },
     ],
   },
@@ -424,7 +446,7 @@ export const defaultContent: SiteContent = {
     email: "alexey129800@gmail.com",
   },
   footer: {
-    name: "Alex Zenchik · Design & Development, Idea → Launch",
+    name: "Alex Zenchik · Design & Development",
     socials: [
       { label: "Fiverr", href: "https://www.fiverr.com/a1exzenchik" },
       { label: "Telegram", href: "https://t.me/alex_zenchik" },
@@ -433,4 +455,4 @@ export const defaultContent: SiteContent = {
       { label: "GitHub", href: "https://github.com/A1exZen" },
     ],
   },
-};
+}

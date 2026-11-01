@@ -10,6 +10,9 @@
   --color-paper: #f4f4f5;
   --color-accent: #2b7fff;
   --color-accent-strong: #1a6dff;
+  /* Deeper blue for large filled surfaces (footer, feature cards) - white
+     text on it passes WCAG AA, which the lighter accent doesn't. */
+  --color-accent-deep: #1660e8;
 }
 
 :root {

@@ -4,12 +4,15 @@ import Faq from "../components/Faq";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero";
 import Journey from "../components/Journey";
+import Philosophy from "../components/Philosophy";
 // Pricing temporarily disabled — see the commented-out <Packages /> below.
 // import Packages from "../components/Packages";
 import Services from "../components/Services";
-import Showcase from "../components/Showcase";
+// Pinned 3x3 showcase temporarily replaced by the WorkMarquee strip.
+// import Showcase from "../components/Showcase";
 import Skills from "../components/Skills";
 import Testimonials from "../components/Testimonials";
+import WorkMarquee from "../components/WorkMarquee";
 import WorkWithMe from "../components/WorkWithMe";
 import ZigZag from "../components/ui/ZigZag";
 
@@ -23,7 +26,7 @@ export default function Home() {
 		<>
 			{/* Pinned hero: the track is taller than the hero, so the hero stays
 			    fixed at the top for an extra stretch while the content below rides
-			    up over it — full-bleed, no scaling, so the edges stay clean. */}
+			    up over it. */}
 			<div className="relative h-[165vh]">
 				<div className="sticky top-0 z-0 h-screen overflow-hidden">
 					<Hero />
@@ -31,14 +34,17 @@ export default function Home() {
 			</div>
 
 			{/* Everything after the hero rides up over it. The negative margin pulls
-			    it into the hero's pinned zone; the zigzag is the overlapping seam. */}
-			<div className="relative z-10 mt-[-65vh]">
+			    it into the hero's pinned zone, plus HERO_SEAM (7rem) more so the
+			    zigzag seam already peeks above the fold on first paint. */}
+			<div className="relative z-10 mt-[calc(-65vh-7rem)]">
 				<div className="pointer-events-none relative z-10 -mb-px">
 					<ZigZag direction="up" fill="#ffffff" />
 				</div>
 				<div className="bg-white">
-					<Showcase />
+					{/* <Showcase /> */}
+					<WorkMarquee />
 					<Services />
+					<Philosophy />
 					<CaseStudies />
 					<Journey />
 					{/* Pricing temporarily disabled — re-enable by uncommenting. */}

@@ -1,3 +1,4 @@
+import { MotionConfig } from "motion/react";
 import { useEffect, useRef } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -62,7 +63,9 @@ export default function App() {
   useSmoothScroll();
   useDocTitle();
   return (
-    <>
+    // "user": Motion skips transform animations for people who ask the OS
+    // for reduced motion (idle floats, hover tilts, entrances).
+    <MotionConfig reducedMotion="user">
       <ScrollToTop />
       <PageTransition />
       <Navbar />
@@ -73,6 +76,6 @@ export default function App() {
           <Route path="/case-studies/:slug" element={<CaseStudy />} />
         </Routes>
       </main>
-    </>
+    </MotionConfig>
   );
 }

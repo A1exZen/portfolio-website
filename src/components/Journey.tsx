@@ -18,7 +18,7 @@ export default function Journey() {
 	const drawn = useSpring(scrollYProgress, { stiffness: 90, damping: 26 });
 
 	return (
-		<section id="process" className="bg-cloud py-24 sm:py-28">
+		<section id="process" className="bg-white py-24 sm:py-28">
 			<div className="mx-auto max-w-3xl px-6">
 				<SectionHeading>How We'll Work</SectionHeading>
 
